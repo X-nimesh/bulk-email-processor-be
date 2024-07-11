@@ -21,20 +21,27 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./typeOrm.config.ts",
     "typeorm:generate": "npm run typeorm migration:generate ./src/database/migrations/n",
     "typeorm:run": "npm run typeorm migration:run",
-    "typeorm:revert": "npm run typeorm migration:revert"
+    "typeorm:revert": "npm run typeorm migration:revert",
+    "seeder": "ts-node -r tsconfig-paths/register ./src/app/seeder/seed-data.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/microservices": "^10.3.10",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.4.0",
+    "amqp-connection-manager": "^4.1.14",
+    "amqplib": "^0.10.4",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.5",
+    "nodemailer": "^6.9.14",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "uuid": "^10.0.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -47,6 +54,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
+    "@types/multer": "^1.4.11",
     "@types/node": "^20.3.1",
     "@types/passport-jwt": "^3.0.13",
     "@types/passport-local": "^1.0.38",
