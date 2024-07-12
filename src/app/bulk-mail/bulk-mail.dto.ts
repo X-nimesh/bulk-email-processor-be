@@ -6,16 +6,11 @@ interface emailListType {
 }
 export class bulkMailDTO {
   emailList: emailListType[];
-  title: string;
   templateId: number;
   name: string;
   userId: number;
 }
 export class BulkMailReqDTO {
-  @ApiProperty()
-  @IsNotEmpty()
-  title: string;
-
   @ApiProperty()
   @IsNotEmpty()
   templateId: number;

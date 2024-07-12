@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { LoginUserDTO, RegisterUserDTO } from '../user/dto/user.dto';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
@@ -16,7 +16,7 @@ export class AuthService {
     const { email, password } = userDetails;
     const userExists = await this.userService.findOnebyEmail(email);
     if (userExists) {
-      return { message: 'User already exists' };
+      throw new HttpException('User already exists', 400);
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await this.userService.createUser({
@@ -57,14 +57,18 @@ export class AuthService {
   }
 
   async verifyEmail(token: string) {
-    const payload = await this.jwtService.verifyAsync(token);
-    const { sub } = payload;
-    const user = await this.userService.findOneUsersByID(sub);
-    if (user) {
-      user.verified = true;
-      await this.userService.updateUser(sub, user);
-      return { message: 'Email verified' };
+    try {
+      const payload = await this.jwtService.verifyAsync(token);
+      const { sub } = payload;
+      const user = await this.userService.findOneUsersByID(sub);
+      if (user) {
+        user.verified = true;
+        await this.userService.updateUser(sub, user);
+        return { message: 'Email verified' };
+      }
+      return { message: 'Invalid token' };
+    } catch (error) {
+      throw new HttpException('Invalid token', 401);
     }
-    return { message: 'Invalid token' };
   }
 }

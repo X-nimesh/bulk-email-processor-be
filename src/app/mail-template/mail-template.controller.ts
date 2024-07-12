@@ -12,6 +12,10 @@ export class MailTemplateController {
   async getMailTemplate() {
     return this.mailTemplateService.getAllMailTemplate();
   }
+  @Get(':id')
+  async getMailTemplateById(id: number) {
+    return this.mailTemplateService.getMailTemplateById(id);
+  }
   @Post()
   async createMailTemplate(@Body() body: MailTemplateDto) {
     return await this.mailTemplateService.createMailTemplate(body);

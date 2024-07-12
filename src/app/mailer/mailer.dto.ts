@@ -6,7 +6,7 @@ export class SendMailDTO {
 export class BulkMailDTO {
   to: string;
   subject: string;
-  text: string;
+  title: string;
   html: string;
   name: string;
   userId: number;

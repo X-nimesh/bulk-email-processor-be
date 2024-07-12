@@ -26,7 +26,7 @@ export class BulkMailService {
   }
 
   async sendBulkMail(data: bulkMailDTO) {
-    const { emailList, title, templateId, name, userId } = data;
+    const { emailList, templateId, name, userId } = data;
     const templateDetails =
       await this.mailTemplateservice.getMailTemplateById(templateId);
     if (!templateDetails) {
@@ -37,7 +37,6 @@ export class BulkMailService {
       await this.sendBulkMailToQue({
         to: data.email,
         subject,
-        text: title,
         html,
         name,
         userId,

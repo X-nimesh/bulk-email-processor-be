@@ -7,7 +7,6 @@ import {
 export class Base extends BaseEntity {
   @CreateDateColumn({
     name: 'created_at',
-    select: false,
   })
   public createdAt: Date;
 

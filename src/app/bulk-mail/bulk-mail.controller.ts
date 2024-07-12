@@ -29,7 +29,7 @@ export class BulkMailController {
   ) {
     console.log(req.user);
     const { name, userId } = req.user;
-    const { title, templateId } = data;
+    const { templateId } = data;
     const emailList = this.bulkMailService.readExcelFile(file.buffer);
     const headers = Object.keys(emailList[0])[0] === 'email';
     if (!headers) {
@@ -37,7 +37,6 @@ export class BulkMailController {
     }
     await this.bulkMailService.sendBulkMail({
       emailList,
-      title,
       templateId,
       name,
       userId,

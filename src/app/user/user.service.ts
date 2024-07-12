@@ -27,4 +27,10 @@ export class UserService {
   async updateUser(id: number, user: RegisterUserDTO) {
     return await this.userRepository.update(id, user);
   }
+  async getMailLogs(userId: number) {
+    return await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['mailLogs'],
+    });
+  }
 }
