@@ -9,5 +9,6 @@ export const env = {
   MAILERPORT: process.env.MAILER_PORT,
   MAILERUSER: process.env.MAILER_USER,
   MAILERPASS: process.env.PASSWORD,
+  RABBITMQHOST: process.env.RABBITMQ_URL,
   FRONTURL: process.env.FRONTURL,
 };

@@ -8,6 +8,7 @@ import { bulkMailDTO } from './bulk-mail.dto';
 import * as XLSX from 'xlsx';
 
 import { MailTemplateService } from '../mail-template/mail-template.service';
+import { env } from 'src/config/env';
 
 @Injectable()
 export class BulkMailService {
@@ -16,7 +17,7 @@ export class BulkMailService {
     this.client = ClientProxyFactory.create({
       transport: Transport.RMQ,
       options: {
-        urls: ['amqp://localhost:5672'],
+        urls: [env.RABBITMQHOST],
         queue: 'main_queue',
         queueOptions: {
           durable: false,
