@@ -29,6 +29,7 @@ export class MailLog extends Base {
 
   @Column({ type: 'enum', enum: MailStatus, default: MailStatus.PENDING })
   status: MailStatus;
+
   @ManyToOne(() => User, (user) => user.mailLogs)
   @JoinColumn({ name: 'sender_id' })
   user: User;

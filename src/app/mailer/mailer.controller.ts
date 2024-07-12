@@ -10,8 +10,7 @@ export class MailerController {
 
   @EventPattern('send_bulk_mail')
   async sendBulkMail(data: any) {
-    const { to, subject, text, html } = data;
-    console.log({ data });
-    return this.mailerService.sendBulkMail(to, subject, text, html);
+    console.log('Received data from que userId:', data.userId);
+    await this.mailerService.sendBulkMail(data);
   }
 }

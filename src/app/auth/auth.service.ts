@@ -19,11 +19,11 @@ export class AuthService {
       return { message: 'User already exists' };
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    // sending verification mail
     const user = await this.userService.createUser({
       ...userDetails,
       password: hashedPassword,
     });
+    // sending verification mail
     return await this.sendVerificationMail(user.email, user.id, user.name);
   }
   async login(userDeatils: LoginUserDTO) {

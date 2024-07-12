@@ -1,10 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
+interface emailListType {
+  email: string;
+}
 export class bulkMailDTO {
-  emailList: string[];
+  emailList: emailListType[];
   title: string;
   templateId: number;
+  name: string;
+  userId: number;
 }
 export class BulkMailReqDTO {
   @ApiProperty()
